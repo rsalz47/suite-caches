@@ -1,3 +1,4 @@
+#[derive(Debug)]
 pub enum MemoryError {
     LoadFail,
     StoreFail,
@@ -5,6 +6,7 @@ pub enum MemoryError {
 
 /// Memory interface. It exposes and only has two functions, `load` and `store`, which
 /// behave as expected. In the case that an address 
+#[derive(Debug)]
 pub struct Memory {
     size: usize,
     mem: Vec<u32>,
