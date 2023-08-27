@@ -5,7 +5,8 @@ pub enum MemoryError {
 }
 
 /// Memory interface. It exposes and only has two functions, `load` and `store`, which
-/// behave as expected. In the case that an address 
+/// behave as expected. In the case that an address exceeds the allocated space, a MemoryError
+/// is thrown according to what kind of operation performed the invalid access.
 #[derive(Debug)]
 pub struct Memory {
     size: usize,
@@ -20,13 +21,6 @@ impl Memory {
     // TODO: Decide what I want to use as the memory data structure. My preference is for a 2D
     // vector, since that makes word-sized rows easier to visualize and work with. 
     // I'll have to see if that introduces any notable overhead vs. a single array access. 
-
-    // pub fn new() -> Self {
-    //     Self {
-    //         size: 4096,
-    //         mem: vec![0u32; 4096]
-    //     }
-    // }
 
     /// Creates a Memory struct with `size` bytes of addressable memory.
     pub fn new(size: usize) -> Self {
