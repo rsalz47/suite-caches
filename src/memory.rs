@@ -9,14 +9,10 @@ pub enum MemoryError {
 /// is thrown according to what kind of operation performed the invalid access.
 #[derive(Debug)]
 pub struct Memory {
-    size: usize,
     mem: Vec<u32>,
 }
 
 impl Memory {
-
-    // TODO: Either overload or use default parameters for size. I guess there's nothing wrong with
-    // forcing users to specify a size, but options are nice :]
 
     // TODO: Decide what I want to use as the memory data structure. My preference is for a 2D
     // vector, since that makes word-sized rows easier to visualize and work with. 
@@ -25,9 +21,12 @@ impl Memory {
     /// Creates a Memory struct with `size` bytes of addressable memory.
     pub fn new(size: usize) -> Self {
         Self {
-            size,
             mem: vec![0u32; size]
         }
+    }
+
+    pub fn len(&self) -> usize {
+        return self.mem.len();
     }
 
     /// Loads the data stored at `addr` or dies trying
@@ -52,6 +51,6 @@ impl Memory {
     /// Debugging function used to print out the struct's members. This will be deprecated and
     /// replaced with `to_string()` and an API to access the contents of memory for GUI purposes 
     pub fn print(&self) {
-        println!("This memory object has size {}", self.size);
+        println!("This memory object has size {}", self.mem.len());
     }
 }
